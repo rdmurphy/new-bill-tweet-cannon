@@ -1,2 +1,1 @@
-worker: python sentry.py
-worker: python cannon.py
+worker: python sentry.py & python cannon.py
