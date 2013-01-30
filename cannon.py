@@ -3,12 +3,9 @@ import time
 from json import loads
 
 import twitter
-from redis import Redis, from_url
+from redis import from_url
 
-try:
-    REDIS_CONN = Redis()
-except:
-    REDIS_CONN = from_url(os.environ['REDISTOGO_URL'])
+REDIS_CONN = from_url(os.environ['REDISTOGO_URL'])
 
 TWITTER_API = twitter.Api(
     consumer_key=os.environ['CONSUMER_KEY'],

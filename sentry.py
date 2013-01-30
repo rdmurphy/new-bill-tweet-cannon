@@ -5,14 +5,11 @@ from json import dumps
 
 import requests
 from pyquery import PyQuery as pq
-from redis import Redis, from_url
+from redis import from_url
 
 TODAY_URL = 'http://www.capitol.state.tx.us/Reports/Report.aspx?ID=todayfiled'
 FIRST_RUN = True
-try:
-    REDIS_CONN = Redis()
-except:
-    REDIS_CONN = from_url(os.environ['REDISTOGO_URL'])
+REDIS_CONN = from_url(os.environ['REDISTOGO_URL'])
 
 
 def redis_new_bill_loader(bills):
