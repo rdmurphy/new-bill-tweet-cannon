@@ -32,7 +32,7 @@ def main():
                 oldest_tweet = REDIS_CONN.lindex('tweets', 0)
                 try:
                     tweet(loads(oldest_tweet))
-                except twitter.exceptions.TwitterError:
+                except:
                     print("Twitter is unhappy with something.")
                     time.sleep(60)
                     continue
