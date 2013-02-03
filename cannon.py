@@ -32,12 +32,16 @@ def main():
                 oldest_tweet = REDIS_CONN.lindex('tweets', 0)
                 try:
                     tweet(loads(oldest_tweet))
-                except:
-                    print("Twitter is unhappy with something.")
+                except twitter.TwitterError, err:
+                    if err == 'Status is a duplicate.':
+                        print('Duplicate status. Dumping it from queue.')
+                        REDIS_CONN.lpop('tweets')
+                    else:
+                        print("Twitter has an unknown issue. Trying again in one minute.")
                     time.sleep(60)
                     continue
                 REDIS_CONN.lpop('tweets')
-                time.sleep(60 * 5)  # 5 minutes
+                time.sleep(60 * 7)  # 7 minutes
             else:
                 time.sleep(60)
 
