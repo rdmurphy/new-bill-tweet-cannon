@@ -37,7 +37,8 @@ def main():
                         print('Duplicate status. Dumping it from queue.')
                         REDIS_CONN.lpop('tweets')
                     else:
-                        print("Twitter has an unknown issue. Trying again in one minute.")
+                        print("Twitter has an issue. Trying again in one minute.")
+                        print(err)
                     time.sleep(60)
                     continue
                 REDIS_CONN.lpop('tweets')
