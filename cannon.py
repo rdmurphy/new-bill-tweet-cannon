@@ -33,7 +33,7 @@ def main():
                 try:
                     tweet(loads(oldest_tweet))
                 except twitter.TwitterError, err:
-                    if err == 'Status is a duplicate.':
+                    if err.message == 'Status is a duplicate.':
                         print('Duplicate status. Dumping it from queue.')
                         REDIS_CONN.lpop('tweets')
                     else:
