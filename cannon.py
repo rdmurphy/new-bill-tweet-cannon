@@ -42,7 +42,7 @@ def main():
                     time.sleep(60)
                     continue
                 REDIS_CONN.lpop('tweets')
-                print('Number of tweets left in the tube: ' + REDIS_CONN.llen('tweets'))
+                print('Number of tweets left in the tube: ' + str(REDIS_CONN.llen('tweets')))
                 time.sleep(60 * 7)  # 7 minutes
             else:
                 time.sleep(60)
