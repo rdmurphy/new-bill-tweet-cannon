@@ -17,8 +17,8 @@ TWITTER_API = twitter.Api(
 
 def tweet(content):
     tweet_text = '{0} - {1}'.format(content['bill'].encode('utf8'), content['bill_text'].encode('utf8'))
-    if len(tweet_text) > 116:
-        tweet_text = tweet_text[:116].strip() + '...'
+    if len(tweet_text) > 114:
+        tweet_text = tweet_text[:114].strip() + '...'
     tweet_text = tweet_text + ' ' + content['bill_url']
     print(tweet_text)
     print(len(tweet_text))
